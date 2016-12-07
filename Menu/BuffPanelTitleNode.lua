@@ -210,14 +210,14 @@ function BuffPanelTitleNode:SetBuff(buffInfo)
 	end, self, self);
   
   self.skillIcon:SetVisible(((self.buffType == "Debuff" and self.buffInfo.bb) or self.buffType == "CrowdControl") and not self.remover);
-  self.skillIcon:SetBackground("CombatAnalysis/Resources/DebuffIcons/"..((self.buffInfo.invalidIcon or self.iconName == nil) and "default.tga" or self.iconName));
+  self.skillIcon:SetBackground(0x41142A27);
   
   table.insert(self.listeners,{self.buffInfo,"iconName",self});
   Misc.AddListener(self.buffInfo, "iconName", function(sender)    
 		if (self.buffInfo.iconName ~= self.iconName) then
       self.iconName = self.buffInfo.iconName;
       self.skillIcon:SetVisible(((self.buffType == "Debuff" and self.buffInfo.bb) or self.buffType == "CrowdControl") and not self.remover);
-			self.skillIcon:SetBackground("CombatAnalysis/Resources/DebuffIcons/"..((self.buffInfo.invalidIcon or self.iconName == nil) and "default.tga" or self.iconName));
+			self.skillIcon:SetBackground(0x41142A27);
       self.skillLabel:SetPosition(((((self.buffType ~= "Debuff" or not self.buffInfo.bb) and self.buffType ~= "CrowdControl") or self.remover) and 90 or 111),3);
       self.skillLabel:SetSize(((self.iconName == nil or self.remover) and 175 or 154)+(self.remover and 60 or 0),self.height-self.padding-6);
 		end

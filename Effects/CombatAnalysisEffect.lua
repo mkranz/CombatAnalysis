@@ -8,10 +8,11 @@
 
 _G.CombatAnalysisEffect = class();
 
-function CombatAnalysisEffect:Constructor(effectName,effectIcon,isDebuff,targetName,startTime,duration)
+function CombatAnalysisEffect:Constructor(effectName,effectIcon,isDebuff,targetName,startTime,duration,iconScale)
 	self.effectName = effectName;
 	self.effectIcon = effectIcon;
-	
+	self.iconScale = iconScale;
+
 	self.isDebuff = isDebuff;
 	
 	self.targetName = targetName;
@@ -26,6 +27,10 @@ end
 
 function CombatAnalysisEffect:GetIcon()
 	return self.effectIcon;
+end
+
+function CombatAnalysisEffect:GetIconScale()
+	return self.iconScale;
 end
 
 function CombatAnalysisEffect:GetTargetName()

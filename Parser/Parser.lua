@@ -293,7 +293,7 @@ function _G.ApplyDebuff(timestamp,effectInfo)
               (not combatData.currentEncounter.orderedMobs[1].terminated and
               (mobIndex == nil or combatData.currentEncounter.orderedMobs[mobIndex[1]].alive or mobIndex[2]))
 				)) then
-		combatData.runningDebuffs:Applied(timestamp,targetName,skillName,(not skillInfo.toggleSkill and duration or nil),isDebuff,skillInfo.icon,initiatorName,(not isDebuff or skillInfo.bb));
+		combatData.runningDebuffs:Applied(timestamp,targetName,skillName,(not skillInfo.toggleSkill and duration or nil),isDebuff,skillInfo.icon,initiatorName,(not isDebuff or skillInfo.bb),skillInfo.iconScale);
 	end
   
 	-- record all debuffs in CA
