@@ -20,8 +20,8 @@ function RunningDebuffs:Constructor()
 	self.expirations = OrderedList();
 end
 
-function RunningDebuffs:Applied(timestamp,targetName,skillName,duration,isDebuff,icon,initiatorName,showInBuffBars)
-	local effect = CombatAnalysisEffect(skillName,icon,(isDebuff and skillName ~= L.StunImmunity),targetName,timestamp,duration);
+function RunningDebuffs:Applied(timestamp,targetName,skillName,duration,isDebuff,icon,initiatorName,showInBuffBars,iconScale)
+	local effect = CombatAnalysisEffect(skillName,icon,(isDebuff and skillName ~= L.StunImmunity),targetName,timestamp,duration,iconScale);
 	if (isDebuff) then
 		if (self.debuffs[targetName] ~= nil and self.debuffs[targetName][skillName] ~= nil) then self:Terminated(timestamp,targetName,skillName) end
 		if (self.debuffs[targetName] == nil) then self.debuffs[targetName] = {} end

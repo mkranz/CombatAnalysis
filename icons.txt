@@ -1,0 +1,15 @@
+Firelore: ID: 0x41142A27; Size: 32 × 32   ID: 0x41142BEB; Size: 32 × 32
+Frostlore: ID: 0x41142A28; Size: 32 × 32   ID: 0x41142BEB; Size: 32 × 32
+Stormlore: ID: 0x41142A29; Size: 32 × 32   ID: 0x41142BEB; Size: 32 × 32
+
+Continue finding via http://www.lotrointerface.com/downloads/info835-AssetBrowser.html
+
+and adding both iconName = <asset-id> and iconScale = 2 to skills
+
+-----------
+patch buffbars, CombatAnalysisEffectDisplay.lua
+
+self:SetSize(16 * effect:GetIconScale(), 16 * effect:GetIconScale());
+    self:SetBackground(effect:GetIcon());
+    self:SetStretchMode(1);
+    self:SetSize(16, 16);

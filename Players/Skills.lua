@@ -370,9 +370,9 @@ local restoreV420Traits = function()
     table.insert(traits.configurations[L.MasterOfNaturesFury].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.CrackedEarth, iconName = "cracked_earth.tga", overwrites = {L.CrackedEarth}, appliedBy = {{skillName = L.CrackedEarth, duration = 10}}});
     
     table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.GustOfWind, iconName = "gust_of_wind.tga", overwrites = {L.GustOfWind}, appliedBy = {{skillName = L.GustOfWind, duration = 120}}});
-    table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.FireLore, iconName = "fire_lore.tga", overwrites = {L.FireLore}, appliedBy = {{skillName = L.FireLore, duration = 60}}});
+    table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.FireLore, iconName = 0x41142A27, iconScale = 2, conflicts = {L.FireLore}, appliedBy = {{skillName = L.FireLore, duration = 45}}});
     table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.WindLore, iconName = "wind_lore.tga", overwrites = {L.WindLore}, appliedBy = {{skillName = L.WindLore, duration = 30}}});
-    table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.FrostLore, iconName = "frost_lore.tga", overwrites = {L.FrostLore}, appliedBy = {{skillName = L.FrostLore, duration = 60}}});
+    table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.FrostLore, iconName = "frost_lore.tga", conflicts = {L.FrostLore}, appliedBy = {{skillName = L.FrostLore, duration = 45}}});
     table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.AncientCraft, iconName = "ancient_craft.tga", overwrites = {L.AncientCraft}, appliedBy = {{skillName = L.AncientCraft, duration = 60}}});
     table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.SignOfPowerCommand, iconName = "sign_of_power_command.tga", overwrites = {L.SignOfPowerCommand}, appliedBy = {{skillName = L.SignOfPowerCommand, duration = 60}, {skillName = L.ImprovedSignOfPowerCommand, duration = 60}}});
     table.insert(traits.configurations[L.TheAncientMaster].debuffs, {ca = true, bb = true, class = "LoreMaster", skillName = L.SignOfPowerSeeAllEnds, iconName = "sign_of_power_see_all_ends.tga", overwrites = {L.SignOfPowerSeeAllEnds}, appliedBy = {{skillName = L.SignOfPowerSeeAllEnds, duration = 45}}});
@@ -1155,7 +1155,9 @@ function _G.AddSkillInfo(skillType, skillInfo)
   -- Debuffs
   elseif (skillType == "Debuff") then
     debuffs[skillInfo.skillName] = {ca = skillInfo.ca, bb = skillInfo.bb, removalOnly = skillInfo.removalOnly,
-        icon = "CombatAnalysis/Resources/DebuffIcons/"..(skillInfo.iconName ~= nil and skillInfo.iconName or "default.tga"), toggleSkill = skillInfo.toggleSkill,
+        icon = ("number" == type(skillInfo.iconName) and skillInfo.iconName or "CombatAnalysis/Resources/DebuffIcons/"..(skillInfo.iconName ~= nil and skillInfo.iconName or "default.tga")),
+        toggleSkill = skillInfo.toggleSkill,
+        iconScale = (skillInfo.iconScale ~= nil and skillInfo.iconScale or 1),
         overwrites = Misc.TableCopy(skillInfo.overwrites), conflicts = Misc.TableCopy(skillInfo.conflicts), buffEffects = Misc.TableCopy(skillInfo.buffEffects)};
     
     for _,applicationInfo in ipairs(skillInfo.appliedBy) do
